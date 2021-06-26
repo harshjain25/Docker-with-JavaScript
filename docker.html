@@ -1,0 +1,44 @@
+
+<html>
+	<head>
+		<title>Docker ops</title>
+		<style>
+			.docker{
+				
+				position : absolute;
+				top: 60px;
+				left:70px;
+				};
+		</style>
+		<script src="docker.js"></script>
+
+	</head>
+	<body>
+		<div>
+			<input type="text" class="docker" onclick="clear_text()" id="in" value="Type your docker command">
+	
+		</div>
+		<div >
+			<pre>
+				<p id="op">
+
+				</p>
+			</pre>
+		</div>
+
+		<script>
+				
+		function docker(){
+
+			cmd = document.getElementById("in").value;
+			alert(cmd);
+			xhr = new XMLHttpRequest();
+			alert(xhr);
+			xhr.open("GET","http://192.168.0.122/cgi-bin/docker.py?x="+cmd,true);
+			xhr.send();
+			
+			//anonymous
+			xhr.onload = function(){
+				var output = xhr.reponseText;
+				alert(output);
+				op = document.getElementById("op");
